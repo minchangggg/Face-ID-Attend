@@ -7,3 +7,6 @@ Face ID Attend is an IoT-based attendance system that uses an ESP32-CAM with AI-
 The system captures faces in real time, verifies identities, and logs attendance data to a central server for easy management.
 
 Designed for classrooms, it delivers a fast, contactless, and reliable solution for modern attendance tracking.
+
+## Ref
+> https://www.youtube.com/watch?v=fHSl8G4zTkM
