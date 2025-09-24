@@ -8,5 +8,7 @@ The system captures faces in real time, verifies identities, and logs attendance
 
 Designed for classrooms, it delivers a fast, contactless, and reliable solution for modern attendance tracking.
 
+### FaceID-ESP (ESP32-CAM + ESP-WHO)
+
 ## Ref
 > https://www.youtube.com/watch?v=fHSl8G4zTkM
