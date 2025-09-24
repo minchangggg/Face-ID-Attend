@@ -1,5 +1,5 @@
 # Face ID Attend
-<img width="150" alt="image" src="https://github.com/user-attachments/assets/0f3917de-76d2-441e-b777-fd996f000896">
+<img width="130" alt="image" src="https://github.com/user-attachments/assets/0f3917de-76d2-441e-b777-fd996f000896">
 
 ## Introduction
 - Face ID Attend is a IoT-based contact-free attendance system with face recognition — built two ways:
