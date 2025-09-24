@@ -5,9 +5,7 @@ idf.py create-project hello_world
 cd hello_world
 
 idf.py set-target esp32
-
 idf.py -p COM6 flash
-
 idf.py -p COM6 monitor
 ```
 <img width="952" height="799" alt="image" src="https://github.com/user-attachments/assets/4abf0322-132d-401f-be68-d2312047ceb2" />
