@@ -1,0 +1,25 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32 -DCCACHE_ENABLE=1 C:\Users\minht\Downloads\hello_world
+fatal: detected dubious ownership in repository at 'C:/Espressif/frameworks/esp-idf-v5.5'
+'C:/Espressif/frameworks/esp-idf-v5.5' is owned by:
+	BUILTIN/Administrators (S-1-5-32-544)
+but the current user is:
+	DESKTOP-USESJJC/minht (S-1-5-21-3175321372-2905238006-2792587190-1001)
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory C:/Espressif/frameworks/esp-idf-v5.5
+fatal: detected dubious ownership in repository at 'C:/Espressif/frameworks/esp-idf-v5.5'
+'C:/Espressif/frameworks/esp-idf-v5.5' is owned by:
+	BUILTIN/Administrators (S-1-5-32-544)
+but the current user is:
+	DESKTOP-USESJJC/minht (S-1-5-21-3175321372-2905238006-2792587190-1001)
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory C:/Espressif/frameworks/esp-idf-v5.5
+fatal: detected dubious ownership in repository at 'C:/Espressif/frameworks/esp-idf-v5.5/components/openthread/openthread'
+'C:/Espressif/frameworks/esp-idf-v5.5/components/openthread/openthread/.git' is owned by:
+	BUILTIN/Administrators (S-1-5-32-544)
+but the current user is:
+	DESKTOP-USESJJC/minht (S-1-5-21-3175321372-2905238006-2792587190-1001)
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory C:/Espressif/frameworks/esp-idf-v5.5/components/openthread/openthread
