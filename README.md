@@ -1,5 +1,5 @@
 # Face ID Attend
-<img width="120" alt="image" src="https://github.com/user-attachments/assets/0f3917de-76d2-441e-b777-fd996f000896">
+<img width="150" alt="image" src="https://github.com/user-attachments/assets/0f3917de-76d2-441e-b777-fd996f000896">
 
 ## Introduction
 Face ID Attend is an IoT-based attendance system that uses an ESP32-CAM with AI-powered face recognition to automate student check-ins.
