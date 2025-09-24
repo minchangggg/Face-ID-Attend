@@ -1,9 +1,20 @@
 
+```powershell
+cd C:\Users\minht\Downloads
+idf.py create-project hello_world
+cd hello_world
+
+idf.py set-target esp32
+
+idf.py -p COM6 flash
+
+idf.py -p COM6 monitor
+```
 <img width="952" height="799" alt="image" src="https://github.com/user-attachments/assets/4abf0322-132d-401f-be68-d2312047ceb2" />
 
 <img width="929" height="994" alt="image" src="https://github.com/user-attachments/assets/ff29d220-5367-4918-a4cf-c0b9c50f79e2" />
 
-<img width="952" height="1010" alt="image" src="https://github.com/user-attachments/assets/ab3deff5-4eb3-4799-a1e5-4f6825e79fa9" />
+<img width="938" height="998" alt="image" src="https://github.com/user-attachments/assets/2f61c4c6-627c-44c1-8683-eae2c3ecae10" />
 
 ....
 
