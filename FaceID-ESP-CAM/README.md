@@ -1,3 +1,4 @@
+# FaceID-ESP (ESP32-CAM + ESP-WHO)
 > https://www.14core.com/esp32-s-cam-in-face-detection-and-recognition-with-esp-who-library/?utm_source=chatgpt.com
 
 <img width="270" alt="image" src="https://github.com/user-attachments/assets/11721ba0-5ed0-4caf-aa5c-fe7d4cb2508d">
