@@ -53,7 +53,7 @@
 ### ESP32-CAM: chỉ chạy firmware nhẹ (chụp ảnh, stream video qua WiFi).
 - Code này có thể viết bằng Arduino IDE hoặc ESP-IDF, nhưng không cần thư viện nặng như ESP-WHO.
 - Nhiệm vụ chính: gửi ảnh/frame lên server (Raspberry Pi 5 hoặc laptop).
-### Server (Raspberry Pi 5 / Laptop): nơi chạy model AI (ví dụ: OpenCV + thư viện face_recognition của Python).
+### Server (Raspberry Pi / Laptop): nơi chạy model AI (ví dụ: OpenCV + thư viện face_recognition của Python).
 - Model này sẽ load database khuôn mặt đã đăng ký, rồi so sánh ảnh nhận được từ ESP32-CAM.
 - Khi nhận diện thành công → server lưu log điểm danh (Excel, Google Sheet, hoặc Database).
 ## Cách chạy thực tế
