@@ -4,7 +4,7 @@
 ## Introduction
 - Face ID Attend is an IoT-based, contact-free attendance system with face recognition — built in two variants:
   + FaceID-ESP — ESP32-CAM + ESP-WHO (ultra-low cost, fully on-device)
-  + FaceID-Pi — Raspberry Pi 5 + Pi Camera (higher accuracy & more headroom)
+  + FaceID-PI — Raspberry Pi + Pi Camera (higher accuracy & more headroom)
 - What it does
   + Detects & recognizes faces in real time
   + Logs check-in / check-out with timestamp
@@ -15,7 +15,7 @@
 - Configure Wi-Fi and (optional) server URL.
 - Enroll faces → start recognition.
 
-### FaceID-Pi (Raspberry Pi 5 + Pi Cam)
+### FaceID-Pi (Raspberry Pi + Pi Cam)
 - Install Python deps (e.g., OpenCV / chosen face model).
 - Connect Pi Camera, run the script.
 - Enroll faces → start recognition.
