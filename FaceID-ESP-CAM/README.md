@@ -9,3 +9,4 @@
 
 > https://github.com/espressif/esp-who.git -b v1.0.0
 
+<img width="1916" height="1079" alt="image" src="https://github.com/user-attachments/assets/5040cf11-bd55-438e-8646-75c4e09310b9" />
