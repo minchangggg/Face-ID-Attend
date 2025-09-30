@@ -1,5 +1,6 @@
-#include "esp_camera.h"
 #include <WiFi.h>
+#include <HTTPClient.h>
+#include "esp_camera.h"
 
 //
 // WARNING!!! PSRAM IC required for UXGA resolution and high JPEG quality
@@ -12,10 +13,15 @@
 
 #include "camera_pins.h"
 
-const char *ssid = "hehe123";
-const char *password = "minchan123";
+// Replace with your network credentials and FastAPI server info
+const char* ssid = "hehe123";
+const char* password = "minchan123";
 
 void startCameraServer();
+const char* fastapi_url = "http://10.92.86.169:8000/verify-face/";
+
+// Add a flag to trigger upload after web capture
+volatile bool upload_after_capture = false;
 
 void setup() {
   Serial.begin(115200);
@@ -99,7 +105,51 @@ void setup() {
   Serial.println("' to connect");
 }
 
+void sendImageToFastAPI(camera_fb_t *fb) {
+  if (WiFi.status() == WL_CONNECTED) {
+    HTTPClient http;
+    String boundary = "----WebKitFormBoundary7MA4YWxkTrZu0gW";
+    String start_form = "--" + boundary + "\r\nContent-Disposition: form-data; name=\"image\"; filename=\"capture.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n";
+    String end_form = "\r\n--" + boundary + "--\r\n";
+    int total_len = start_form.length() + fb->len + end_form.length();
+    uint8_t *body = (uint8_t *)malloc(total_len);
+    if (body) {
+      memcpy(body, start_form.c_str(), start_form.length());
+      memcpy(body + start_form.length(), fb->buf, fb->len);
+      memcpy(body + start_form.length() + fb->len, end_form.c_str(), end_form.length());
+
+      http.begin(fastapi_url);
+      String contentType = "multipart/form-data; boundary=" + boundary;
+      http.addHeader("Content-Type", contentType);
+      int httpResponseCode = http.POST(body, total_len);
+      Serial.printf("[HTTP] POST... code: %d\n", httpResponseCode);
+      if (httpResponseCode > 0) {
+        String response = http.getString();
+        Serial.println("[HTTP] Response: " + response);
+      } else {
+        Serial.printf("[HTTP] POST... failed, error: %s\n", http.errorToString(httpResponseCode).c_str());
+      }
+      http.end();
+      free(body);
+    } else {
+      Serial.println("[HTTP] Failed to allocate memory for HTTP body");
+    }
+  } else {
+    Serial.println("[HTTP] WiFi not connected");
+  }
+}
+
 void loop() {
-  // put your main code here, to run repeatedly:
-  delay(10000);
+  // No image sent unless button is pressed
+
+  if (upload_after_capture) {
+    camera_fb_t *fb = esp_camera_fb_get();
+    if (fb) {
+      sendImageToFastAPI(fb);
+      esp_camera_fb_return(fb);
+    }
+    upload_after_capture = false;
+  }
+
+  delay(1000);
 }

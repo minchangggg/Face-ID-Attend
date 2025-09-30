@@ -1,3 +1,10 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
+extern volatile bool upload_after_capture;
+#ifdef __cplusplus
+}
+#endif
 // Copyright 2015-2016 Espressif Systems (Shanghai) PTE LTD
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -392,10 +399,11 @@ static esp_err_t capture_handler(httpd_req_t *req)
             httpd_resp_send_chunk(req, NULL, 0);
             fb_len = jchunk.len;
         }
-        esp_camera_fb_return(fb);
-        int64_t fr_end = esp_timer_get_time();
-        ESP_LOGI(TAG, "JPG: %uB %ums", (uint32_t)(fb_len), (uint32_t)((fr_end - fr_start) / 1000));
-        return res;
+    esp_camera_fb_return(fb);
+    int64_t fr_end = esp_timer_get_time();
+    ESP_LOGI(TAG, "JPG: %uB %ums", (uint32_t)(fb_len), (uint32_t)((fr_end - fr_start) / 1000));
+    upload_after_capture = true;
+    return res;
 #if CONFIG_ESP_FACE_DETECT_ENABLED
     }
 
