@@ -13,13 +13,20 @@ from ultralytics import YOLO
 
 from utils import detect_largest_face, embedding, cosine_similarity
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Load environment variables from .env file
 load_dotenv()
-
-
-
 
 # SQLite setup for embeddings
 import sqlite3
