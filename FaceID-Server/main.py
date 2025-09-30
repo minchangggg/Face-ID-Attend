@@ -10,6 +10,8 @@ from io import BytesIO
 import os
 import json
 from ultralytics import YOLO
+import datetime
+import csv
 
 from utils import detect_largest_face, embedding, cosine_similarity
 
@@ -37,8 +39,17 @@ c.execute('''CREATE TABLE IF NOT EXISTS face_embeddings (id INTEGER PRIMARY KEY 
 conn.commit()
 conn.close()
 
-
-
+# Create a new table for verification logs
+conn = sqlite3.connect(SQLITE_DB_PATH)
+c = conn.cursor()
+c.execute('''CREATE TABLE IF NOT EXISTS verification_logs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    student_id TEXT,
+    timestamp TEXT
+)''')
+conn.commit()
+conn.close()
 
 @app.post("/add-face/")
 async def add_face(name: str = Form(...), student_id: str = Form(...), image: UploadFile = File(...)):
@@ -130,6 +141,25 @@ async def verify_face(image: UploadFile = File(...)):
                 closest_student_id = db_student_id
 
         if closest_id is not None:
+            # Log the verification event
+            conn = sqlite3.connect(SQLITE_DB_PATH)
+            c = conn.cursor()
+            c.execute('INSERT INTO verification_logs (name, student_id, timestamp) VALUES (?, ?, ?)',
+                      (closest_name, closest_student_id, datetime.datetime.now().isoformat()))
+            conn.commit()
+            conn.close()
+
+            # Log to CSV file (one file per day in verification_logs folder)
+            os.makedirs('verification_logs', exist_ok=True)
+            today = datetime.datetime.now().strftime('%Y-%m-%d')
+            csv_filename = os.path.join('verification_logs', f'verification_logs_{today}.csv')
+            write_header = not os.path.exists(csv_filename)
+            with open(csv_filename, 'a', newline='', encoding='utf-8') as csvfile:
+                writer = csv.writer(csvfile)
+                if write_header:
+                    writer.writerow(['id', 'name', 'student_id', 'timestamp'])
+                writer.writerow([closest_id, closest_name, closest_student_id, datetime.datetime.now().isoformat()])
+
             return JSONResponse(content={
                 "result": "Face matched",
                 "closest_id": closest_id,
@@ -171,3 +201,21 @@ async def detect_human(image: UploadFile = File(...)):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail="An error occurred while processing the image: " + str(e))
+
+@app.get("/view-logs/")
+def view_logs(date: str = None):
+    import glob
+    import csv
+    import os
+    if date is None:
+        # Default to today
+        date = datetime.datetime.now().strftime('%Y-%m-%d')
+    csv_filename = os.path.join('verification_logs', f'verification_logs_{date}.csv')
+    if not os.path.exists(csv_filename):
+        return JSONResponse(content={"error": "Log file not found for this date."}, status_code=404)
+    records = []
+    with open(csv_filename, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            records.append(row)
+    return {"date": date, "records": records}
