@@ -10,3 +10,7 @@
   + Detect & recognize faces in real time
   + Check-in / Check-out + timestamp
   + Save CSV/JSON locally or POST to HTTP endpoint
+
+<img width="3953" height="1586" alt="faceID" src="https://github.com/user-attachments/assets/b4ecfdf5-b6a9-43c7-8e7d-e273c98dc0ca" />
+
+
