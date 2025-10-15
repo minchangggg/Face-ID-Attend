@@ -12,16 +12,19 @@
 ## 2. Approaches
 
 ### 2.1. Approach 1: On-device (ESP32-CAM + ESP-WHO)
+> Folder Code: FaceID-ESP-CAM
 - Detection & recognition run entirely on the ESP32-CAM.
 - Lowest cost; no network required after enrollment.
 - Best for small classrooms/kiosks with 1–2 faces in frame.
 
 ### 2.2. Approach 2: Edge-Server (ESP32-CAM → Server/Laptop)
+> Folder Code: FaceID-Server
 - ESP32-CAM streams MJPEG/RTSP/HTTP frames to a local server or laptop.
 - Server performs detection/recognition (e.g., YOLO/FaceNet).
 - Scales to more users/cameras; higher accuracy and speed than on-device.
 
 ### 2.3. Approach 3: Standalone Edge (Raspberry Pi 5 + Pi Camera v2)
+> Folder Code: FaceID-PI
 - All processing on the Pi (detect, embed, match, log).
 - No external server required; higher performance than ESP32-only.
 - Good balance of accuracy, cost, and maintainability.
