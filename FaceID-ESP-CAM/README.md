@@ -15,7 +15,7 @@
 <img width="147" alt="image" src="https://github.com/user-attachments/assets/cb5ab32f-0c67-4d5a-84ff-2e23b28af88f">
 
 - Toolchain: **ESP-IDF 4.4.7**.
-- ESP-WHO (v1.0.0).
+- **ESP-WHO v1.0.0**.
 > https://github.com/espressif/esp-who.git -b v1.0.0
 - Stable 5V supply (≥ 1A recommended). Avoid brownouts during Wi-Fi + camera.
 
