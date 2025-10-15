@@ -5,6 +5,8 @@
 
 > https://www.14core.com/esp32-s-cam-in-face-detection-and-recognition-with-esp-who-library/?utm_source=chatgpt.com
 
+------------------------
+
 ## Requirements
 - Board: ESP32-CAM (AI-Thinker or equivalent).
 
@@ -21,7 +23,7 @@
 
 - Stable 5V supply (≥ 1A recommended). Avoid brownouts during Wi-Fi + camera.
 
----
+------------------------
 
 ## Folder Layout
 ```
@@ -34,6 +36,8 @@ FaceID-ESP-CAM/
 - **FaceID_ESP_WHO**: production codepath; performs `detect → align → embed → match` on-device; logs attendance.
 - **Test_ESP32_CAM**: quick check that the module, lens, and Wi-Fi work (e.g., open a browser and see the stream/snapshot).
 - **Test_IDF_ESP_5.5**: verifies toolchain/USB/flash/monitor; use before building the main app if setup is fresh.
+
+------------------------
 
 ## How to run
 ### Camera + Wi-Fi test (web server)
