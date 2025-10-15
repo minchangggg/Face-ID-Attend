@@ -17,7 +17,7 @@
 - Lowest cost; no network required after enrollment.
 - Best for small classrooms/kiosks with 1–2 faces in frame.
 
-### 2.2. `Approach 2: Edge-Server (ESP32-CAM → Server/Laptop)`
+### 2.2. `Approach 2: Edge-Server (ESP32-CAM → Server/Laptop)` => main approach
 > Folder Code: **FaceID-Server**
 - ESP32-CAM streams MJPEG/RTSP/HTTP frames to a local server or laptop.
 - Server performs detection/recognition (e.g., YOLO/FaceNet).
